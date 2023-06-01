@@ -69,7 +69,7 @@
         </div>
         <video class="remote_video display_none" autoplay id="remote_video"></video> 
         <div class="local_video_container">
-          <video src="local_video" id="local_video" muted accesskey=""></video>
+          <video class="local_video" id="local_video" muted accesskey=""></video>
         </div>
         <div class="call_buttons_container display_none" id="call_buttons">
           <button class="call_button_small" id="mic_button">
@@ -117,6 +117,7 @@
     </div>
   </div>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="./js/store.js" type="module"></script>
   <script src="./js/main.js" type="module"></script>
 </body>
 </html>
