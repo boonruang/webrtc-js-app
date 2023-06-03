@@ -8,6 +8,6 @@ export const sendPreOffer = (callType, calleePersonalCode) => {
 }
 
 export const handlerOffer = (data) => {
-  console.log('pre offer came webRTC handler')
-  console.log(data)
+  // console.log('pre offer came webRTC handler')
+  // console.log(data)
 }

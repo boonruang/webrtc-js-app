@@ -14,7 +14,7 @@ export const registerSocketEvents = (socket) => {
   })
 
   socket.on('pre-offer', (data) => {
-    console.log('pre offer came')
+    // console.log('pre offer came')
     webRTCHandler.handlerOffer(data)
   })
 }
