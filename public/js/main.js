@@ -48,8 +48,8 @@ personalCodeVideoButton.addEventListener('click', () => {
   webRTCHandler.sendPreOffer(callType, calleePersonalCode)
 })
 
-getIncomingCallDialog(
-  'VIDEO',
-  () => {},
-  () => {}
-)
+// getIncomingCallDialog(
+//   'VIDEO',
+//   () => {},
+//   () => {}
+// )

@@ -25,5 +25,14 @@ export const showIncomingCallDialog = (
   //   return 'video'
   // }
 
-  const incomingCallDialog = elements.getIncomingCallDialog()
+  const incomingCallDialog = elements.getIncomingCallDialog(
+    callTypeInfo,
+    acceptCallHandler,
+    rejectcallHandler
+  )
+
+  // remove all dialogs inside HTML dialog element
+  const dialog = document.getElementById('dialog')
+  dialog.querySelectorAll('*').forEach((dialog) => dialog.remove())
+  dialog.appendChild(incomingCallDialog)
 }
