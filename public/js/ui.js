@@ -104,6 +104,9 @@ const showVideoCallElements = () => {
   const callButtons = document.getElementById('call_buttons')
   showElement(callButtons)
 
+  const placeholder = document.getElementById('video_placeholder')
+  hideElement(placeholder)
+
   const remoteVideo = document.getElementById('remote_video')
   showElement(remoteVideo)
 
