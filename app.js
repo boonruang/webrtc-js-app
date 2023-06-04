@@ -37,6 +37,11 @@ io.on('connection', (socket) => {
         callType
       }
       io.to(calleePersonalCode).emit('pre-offer', data)
+    } else {
+      const data = {
+        preOfferAnswer: 'CALLEE_NOT_FOUND'
+      }
+      io.to(socket.id).emit('pre-offer-answer', data)
     }
   })
 
