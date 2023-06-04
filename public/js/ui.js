@@ -34,5 +34,16 @@ export const showIncomingCallDialog = (
   // remove all dialogs inside HTML dialog element
   const dialog = document.getElementById('dialog')
   dialog.querySelectorAll('*').forEach((dialog) => dialog.remove())
+
   dialog.appendChild(incomingCallDialog)
+}
+
+export const showCallingDialog = (rejectCallHandler) => {
+  const callingDialog = elements.getCallingDialog(rejectCallHandler)
+
+  // remove all dialogs inside HTML dialog element
+  const dialog = document.getElementById('dialog')
+  dialog.querySelectorAll('*').forEach((dialog) => dialog.remove())
+
+  dialog.appendChild(callingDialog)
 }
