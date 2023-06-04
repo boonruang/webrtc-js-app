@@ -38,3 +38,8 @@ export const showCallingDialog = (rejectCallHandler) => {
 
   dialog.appendChild(callingDialog)
 }
+
+export const removeAllDialogs = () => {
+  const dialog = document.getElementById('dialog')
+  dialog.querySelectorAll('*').forEach((dialog) => dialog.remove())
+}
