@@ -40,6 +40,11 @@ io.on('connection', (socket) => {
     }
   })
 
+  socket.on('pre-offer-answer', (data) => {
+    console.log('pre offer answer came')
+    console.log(data)
+  })
+
   socket.on('disconnect', () => {
     console.log('user disconnected')
 

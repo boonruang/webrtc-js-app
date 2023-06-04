@@ -23,13 +23,13 @@ export const sendPreOffer = (callType, calleePersonalCode) => {
   }
 }
 
-export const handlerOffer = (data) => {
+export const handlerPreOffer = (data) => {
   console.log('pre offer came webRTC handler')
   console.log(data)
-  const { callType, calleeSocketId } = data
+  const { callType, callerSocketId } = data
 
   connectedUserDetails = {
-    socketId: calleeSocketId,
+    socketId: callerSocketId,
     callType
   }
 
@@ -38,18 +38,30 @@ export const handlerOffer = (data) => {
     callType === constants.callType.VIDEO_PERSONAL_CODE
   ) {
     console.log('showing call dialog')
-    ui.showIncomingCallDialog(callType, acceptCallHandler, rejectcallHandler)
+    ui.showIncomingCallDialog(callType, acceptCallHandler, rejectCallHandler)
   }
 }
 
 const acceptCallHandler = () => {
   console.log('call accepted')
+  sendPreOfferAnswer(constants.preOfferAnswer.CALL_ACCEPTED)
 }
 
-const rejectcallHandler = () => {
+const rejectCallHandler = () => {
   console.log('call rejected')
+  sendPreOfferAnswer(constants.preOfferAnswer.CALL_REJECTED)
 }
 
 const callingDialogRejectCallHandler = () => {
   console.log('rejecting the call')
+}
+
+const sendPreOfferAnswer = (preOfferAnswer) => {
+  console.log('sendPreOfferAnswer came')
+  const data = {
+    callerSocketId: connectedUserDetails.socketId,
+    preOfferAnswer
+  }
+  console.log(data)
+  wss.sendPreOfferAnswer(data)
 }

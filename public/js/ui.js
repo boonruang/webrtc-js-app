@@ -11,24 +11,15 @@ export const updatePersonalCode = (personalCode) => {
 export const showIncomingCallDialog = (
   callType,
   acceptCallHandler,
-  rejectcallHandler
+  rejectCallHandler
 ) => {
   const callTypeInfo =
     callType === constants.callType.CHAT_PERSONAL_CODE ? 'Chat' : 'Video'
 
-  // let CallTypeInfo
-  // if (callType === constants.callType.CHAT_PERSONAL_CODE) {
-  //   CallTypeInfo = 'chat'
-  //   return 'chat'
-  // } else {
-  //   CallTypeInfo = 'video'
-  //   return 'video'
-  // }
-
   const incomingCallDialog = elements.getIncomingCallDialog(
     callTypeInfo,
     acceptCallHandler,
-    rejectcallHandler
+    rejectCallHandler
   )
 
   // remove all dialogs inside HTML dialog element
