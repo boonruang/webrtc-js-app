@@ -207,6 +207,27 @@ let screenSharingStream
 
 export const switchForScreenSharingButton = async (screenSharingActive) => {
   if (screenSharingActive) {
+    const localStream = store.getState().localStream
+    const senders = peerConnection.getSenders()
+
+    const sender = senders.find((sender) => {
+      return sender.track.kind === localStream.getVideoTracks()[0].kind
+    })
+
+    if (sender) {
+      sender.replaceTrack(localStream.getVideoTracks()[0])
+    }
+
+    // stop screen sharing stream
+
+    store
+      .getState()
+      .screenSharingStream.getTracks()
+      .forEach((track) => track.stop())
+
+    store.setScreenSharingActive(!screenSharingActive)
+
+    ui.updateLocalVideo(localStream)
   } else {
     console.log('switching for screen sharing')
     try {
@@ -219,7 +240,9 @@ export const switchForScreenSharingButton = async (screenSharingActive) => {
       const senders = peerConnection.getSenders()
 
       const sender = senders.find((sender) => {
-        sender.track.kind === screenSharingStream.getVideoTracks()[0].kind
+        return (
+          sender.track.kind === screenSharingStream.getVideoTracks()[0].kind
+        )
       })
 
       if (sender) {
