@@ -31,6 +31,9 @@ export const registerSocketEvents = (socket) => {
       case constants.webRTCSignaling.ANSWER:
         webRTCHandler.handlerWebRTCAnswer(data)
         break
+      case constants.webRTCSignaling.ICE_CANDIDATE:
+        webRTCHandler.handlerWebRTCCandidate(data)
+        break
       default:
         return
     }

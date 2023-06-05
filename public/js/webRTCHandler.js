@@ -39,6 +39,11 @@ const createPeerConnection = () => {
     console.log('geeting ice candidates from stun server')
     if (event.candidate) {
       // send our ice candidates to other peer
+      wss.sendDataUsingWebRTCSignaling({
+        connectedUserSocketId: connectedUserDetails.socketId,
+        type: constants.webRTCSignaling.ICE_CANDIDATE,
+        candidate: event.candidate
+      })
     }
   }
 
@@ -187,4 +192,13 @@ export const handlerWebRTCOffer = async (data) => {
 export const handlerWebRTCAnswer = async (data) => {
   console.log('handling webRTC Answer')
   await peerConnection.setRemoteDescription(data.answer)
+}
+
+export const handlerWebRTCCandidate = async (data) => {
+  console.log('handling incomming webRTC Candidate')
+  try {
+    await peerConnection.addIceCandidate(data.candidate)
+  } catch (err) {
+    console.log('error occured when trying to add received ice candidate', err)
+  }
 }
