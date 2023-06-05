@@ -132,7 +132,7 @@ const sendPreOfferAnswer = (preOfferAnswer) => {
   wss.sendPreOfferAnswer(data)
 }
 
-export const handlerPreOfferAnswer = async (data) => {
+export const handlerPreOfferAnswer = (data) => {
   const { preOfferAnswer } = data
   // console.log('pre offer answer came')
   // console.log(data)
@@ -157,7 +157,7 @@ export const handlerPreOfferAnswer = async (data) => {
     ui.showCallElements(connectedUserDetails.callType)
     createPeerConnection()
     // send webRTC offer
-    await sendWebRTCOffer()
+    sendWebRTCOffer()
   }
 }
 
