@@ -23,3 +23,13 @@ peerConnection.getSenders
 peerConnection.createDataChannel
 
 ```
+
+## Server start
+
+```
+npm start
+```
+
+## Client
+
+localhost:3000

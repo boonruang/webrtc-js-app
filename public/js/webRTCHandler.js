@@ -45,8 +45,10 @@ const createPeerConnection = () => {
       console.log('peer connection is ready to receive data channel message')
     }
 
-    dataChannel.onmessages = (event) => {
+    dataChannel.onmessage = (event) => {
+      console.log('message came from data channel')
       const message = JSON.parse(event.data)
+      console.log(message)
     }
   }
 
