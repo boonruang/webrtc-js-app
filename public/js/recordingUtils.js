@@ -1,13 +1,15 @@
+import * as store from './store.js'
+
 let mediaRecorder
 
-const vp9Codec = 'video/webm; codecs=vp9.0'
+const vp9Codec = 'video/webm; codecs=vp=9'
 const vp9Options = { mimeType: vp9Codec }
 const recordedChunks = []
 
 export const startRecording = () => {
   const remoteStream = store.getState().remoteStream
 
-  if (mediaRecorder.isTypeSupported()) {
+  if (MediaRecorder.isTypeSupported(vp9Codec)) {
     mediaRecorder = new MediaRecorder(remoteStream, vp9Options)
   } else {
     mediaRecorder = new MediaRecorder(remoteStream)
