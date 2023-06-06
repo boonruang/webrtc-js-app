@@ -33,3 +33,7 @@ npm start
 ## Client
 
 localhost:3000
+
+## MediaStream Recording API
+
+MediaRecorder
