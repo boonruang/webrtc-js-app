@@ -100,6 +100,28 @@ io.on('connection', (socket) => {
     console.log('connectedPeersStrangers ', connectedPeersStrangers)
   })
 
+  socket.on('get-stranger-socket-id', () => {
+    let randomStrangerSocketId
+    const filteredConnectedPeerStrangers = connectedPeersStrangers.filter(
+      (peerSocketId) => peerSocketId !== socket.id
+    )
+
+    if (filteredConnectedPeerStrangers.length > 0) {
+      randomStrangerSocketId =
+        filteredConnectedPeerStrangers[
+          Math.floor(Math.random() * filteredConnectedPeerStrangers.length)
+        ]
+    } else {
+      randomStrangerSocketId = null
+    }
+
+    const data = {
+      randomStrangerSocketId
+    }
+
+    io.to(socket.id).emit('stranger-socket-id', data)
+  })
+
   socket.on('disconnect', () => {
     console.log('user disconnected')
 
