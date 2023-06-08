@@ -122,15 +122,19 @@ export const sendPreOffer = (callType, calleePersonalCode) => {
 export const handlerPreOffer = (data) => {
   console.log('pre offer came webRTC handler')
   console.log(data)
+
   const { callType, callerSocketId } = data
+
+  if (!checkCallPossibility()) {
+    return sendPreOfferAnswer(
+      constants.preOfferAnswer.CALL_UNAVAILABLE,
+      callerSocketId
+    )
+  }
 
   connectedUserDetails = {
     socketId: callerSocketId,
     callType
-  }
-
-  if (!checkCallPossibility()) {
-    return sendPreOfferAnswer(constants.preOfferAnswer.CALL_UNAVAILABLE)
   }
 
   store.setCallState(constants.callState.CALL_UNAVAILABLE)
@@ -154,6 +158,7 @@ const acceptCallHandler = () => {
 const rejectCallHandler = () => {
   console.log('call rejected')
   sendPreOfferAnswer()
+  setIncommingCallsAvailable()
   sendPreOfferAnswer(constants.preOfferAnswer.CALL_REJECTED)
 }
 
@@ -161,9 +166,12 @@ const callingDialogRejectCallHandler = () => {
   console.log('rejecting the call')
 }
 
-const sendPreOfferAnswer = (preOfferAnswer) => {
+const sendPreOfferAnswer = (preOfferAnswer, callerSocketId = null) => {
+  const socketId = callerSocketId
+    ? callerSocketId
+    : connectedUserDetails.socketId
   const data = {
-    callerSocketId: connectedUserDetails.socketId,
+    callerSocketId: socketId,
     preOfferAnswer
   }
   ui.removeAllDialogs()
