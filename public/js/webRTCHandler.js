@@ -283,3 +283,17 @@ export const switchForScreenSharingButton = async (screenSharingActive) => {
     }
   }
 }
+
+// hang up
+export const handleHangup = () => {
+  console.log('fishing the call')
+  const data = {
+    connectedUserSocketId: connectedUserDetails.socketId
+  }
+
+  wss.sendUserHangUp(data)
+}
+
+export const handleConnectedUserHangedUp = () => {
+  console.log('conneceted peer hanged up')
+}
