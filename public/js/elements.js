@@ -90,6 +90,11 @@ export const getCallingDialog = (rejectCallHandler) => {
   dialogContent.appendChild(title)
   dialogContent.appendChild(imageContainer)
   dialogContent.appendChild(hangUpCallButton)
+
+  hangUpCallButton.addEventListener('click', () => {
+    rejectCallHandler()
+  })
+
   return dialog
 }
 
