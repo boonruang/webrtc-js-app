@@ -200,6 +200,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  caret-color: transparent;
+  user-select: none;
 }
 
 .checkbox_container_paragraph {

@@ -237,6 +237,17 @@ export const updatedUIAfterHangUp = (callType) => {
   removeAllDialogs()
 }
 
+// changing status of checkbox
+export const updateStrangerCheckbox = (allowConnections) => {
+  const checkboxCheckImg = document.getElementById(
+    'allow_strangers_checkbox_image'
+  )
+
+  allowConnections
+    ? showElement(checkboxCheckImg)
+    : hideElement(checkboxCheckImg)
+}
+
 // ui helper functions
 const enableDashboard = () => {
   const dashboardBlocker = document.getElementById('dashboard_blur')
