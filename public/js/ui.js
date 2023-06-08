@@ -192,6 +192,41 @@ export const switchRecordingButtons = (switchForResumeButton = false) => {
   }
 }
 
+// ui after hanged up
+export const updatedUIAfterHangUp = (callType) => {
+  enableDashboard()
+
+  // hide the call buttons
+  if (
+    callType === constants.callType.VIDEO_PERSONAL_CODE ||
+    callType === constants.callType.VIDEO_STRANGER
+  ) {
+    const callButtons = document.getElementById('call_buttons')
+    hideElement(callButtons)
+  } else {
+    const chatCallButtons = document.getElementById(
+      'finish_chat_button_container'
+    )
+    hideElement(chatCallButtons)
+  }
+
+  const newMessageInput = document.getElementById('new_message')
+  hideElement(newMessageInput)
+  clearMessenger()
+
+  updateMicButton(false)
+  updateCameraButton(false)
+
+  // hide remote video and show palceholder
+  const remoteVideo = document.getElementById('remote_video')
+  hideElement(remoteVideo)
+
+  const placeholder = document.getElementById('video_placeholder')
+  showElement(placeholder)
+
+  removeAllDialogs()
+}
+
 // ui helper functions
 const enableDashboard = () => {
   const dashboardBlocker = document.getElementById('dashboard_blur')
